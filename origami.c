@@ -94,7 +94,7 @@ int main() {
 		}
 		printf("%d\n", wynik);
 	}
-	
+
 	// zwolnij pamiec
 	for (int i = 0; i < n; i++) {
 		free(kartki[i].zlozenia);
@@ -137,9 +137,9 @@ punkt odbij(punkt p, wektor v) {
 
 // iloczyn wektorowy na plaszczyznie (wyznacznik)
 double det(punkt v1, punkt v2) {
-    double rez;
-     rez  = v1.x * v2.y - v1.y * v2.x;
-    return rez;
+	double rez;
+	rez  = v1.x * v2.y - v1.y * v2.x;
+	return rez;
 }
 
 /*konstruktory */
