@@ -56,10 +56,10 @@ int main() {
 	int n, q;
 	scanf("%d %d", &n, &q);
 	// odczytaj i zapisz w tablicy kartki
-	kartka* kartki = malloc((size_t)(n) * sizeof(kartka));
-	for (int i = 0; i < n; i++) {
-		char typ;
-		scanf(" %c", &typ);
+  kartka* kartki = malloc((size_t)(n) * sizeof(kartka));
+  for (int i = 0; i < n; i++) {
+    char typ;
+    scanf(" %c", &typ);
 		if(typ == 'P') {
 			punkt a, b;
 			scanf("%lf %lf %lf %lf", &a.x, &a.y, &b.x, &b.y);
@@ -83,7 +83,6 @@ int main() {
 		int k = 0;
 		punkt p;
 		scanf("%d %lf %lf", &k, &p.x, &p.y);
-		//--k;
 		int wynik;
 		// karki 'P' i 'K'
 		if (kartki[k - 1].ileZlozen == 0) {
@@ -155,8 +154,8 @@ punkt Punkt(double x, double y) {
 wektor Wektor(punkt a, punkt b) {
 	wektor rez;
 	rez.a = a;
-	rez.b = b;
-	return rez;
+  rez.b = b;
+  return rez;
 }
 
 // zwraca prosta przechodzaca przez punkty AB wektora v
