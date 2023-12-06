@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
-
+// stala do porownan liczb zmiennoprzecinkowych z zerem
 const double EPS = 1e-6;
 
 /*struktury*/
@@ -107,12 +107,12 @@ int main() {
 /*funkcje pomocnicze*/
 // przyjety test rownosci z zerem liczby zmiennoprzecinkowej
 int czyZero(double x) {
-    return fabs(x) < EPS;
+  return fabs(x) < EPS;
 }
 
-// przyjety test ujemnosci liczny zmiennoprzecinkowej
+// przyjety test ujemnosci liczby zmiennoprzecinkowej
 int czyUjemna(double x) {
-    return x + EPS < 0;
+  return x + EPS < 0;
 }
 
 // kwadrat zmiennoprzecinkowej
@@ -221,23 +221,30 @@ int czyPrzebija(kartka k, punkt p) {
 // wyznacza rekurencyjnie ile warstw ma zlozona kartka k w punkcie p
 int przebiciaZlozonej(kartka k, punkt p, int ind) { 
 	wektor zlozenie = k.zlozenia[ind];
+  // znak iloczynu wetorowego okresla po ktorej stronie linii zlozenia jest punkt
 	double wyzn = det(odejmij(zlozenie.b, zlozenie.a), odejmij(p, zlozenie.a));
 	// przypadek bazowy
 	if (ind == 0) { 
-		if (czyZero(wyzn)) {													// na linii zlozenia
+    // na linii zlozenia (LZ)
+		if (czyZero(wyzn)) {
 			return czyPrzebija(k, p);
-		} else if (czyUjemna(wyzn)) {									// na prawo
+    // na prawo od LZ
+		} else if (czyUjemna(wyzn)) {
 			return 0;
-		} else {																			// na lewo
+    // na lewo od LZ
+		} else {
 			return czyPrzebija(k, p) + czyPrzebija(k, odbij(p, zlozenie));
 		}
 	}
 	// przypadek rekurencyjny
-	if (czyZero(wyzn)) { 														// na linii zlozenia
+  // na linii zlozenia
+	if (czyZero(wyzn)) {
 		return przebiciaZlozonej(k, p, ind - 1);
-	} else if (czyUjemna(wyzn)) {										// na prawo
+  // na prawo od LZ
+	} else if (czyUjemna(wyzn)) {
 		return 0;
-	}else { 																				// na lewo
+  // na lewo od LZ
+	} else {
 		return przebiciaZlozonej(k, p, ind - 1) + przebiciaZlozonej(k, odbij(p, zlozenie), ind-1);
 	}
 }
